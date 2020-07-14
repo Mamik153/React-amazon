@@ -5,10 +5,15 @@ import { Link } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search'
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { useStateValue } from '../StateProvider';
+import { auth } from '../Firebase'
 
 const Header = () => {
-    const [{ basket }] = useStateValue();
-    //console.log(basket)
+    const [{ basket, user }] = useStateValue();
+    const login = () => {
+        if(user){
+            auth.signOut();
+        }
+    }
 
     return (
         <nav className="header">
@@ -29,10 +34,10 @@ const Header = () => {
             </div>
 
             <div className='header__nav'>
-                <Link to='/login' className='header__link'>
-                    <div className='header__option'>
-                        <span className='header__optionLineOne'>Hello, Mamik</span>
-                        <span className='header__optionLineTwo'>Accounts & list</span>
+                <Link to={!user && '/login'} className='header__link'>
+                    <div onClick={login} className='header__option'>
+                        <span className='header__optionLineOne'>Hello{user && `, ${user.email}`}</span>
+                        <span className='header__optionLineTwo'>{user ? 'Sign Out' : 'Sign In'}</span>
                     </div>
                 </Link>
                 <Link to='/' className='header__link'>
@@ -47,15 +52,15 @@ const Header = () => {
                         <span className='header__optionLineTwo'>Prime</span>
                     </div>
                 </Link>
-                <Link to='/checkout' className='header__link'>
-                    <div className='header__optionBasket'>
-                        <ShoppingCartOutlinedIcon />
-                        <span className='header__optionLineOne header__basketCount'>{ basket?.length }</span>
-                    </div>
-                </Link>
-
+                {user && 
+                    <Link to='/checkout' className='header__link'>
+                        <div className='header__optionBasket'>
+                            <ShoppingCartOutlinedIcon />
+                            <span className='header__optionLineOne header__basketCount'>{ basket?.length }</span>
+                        </div>
+                    </Link>
+                }
             </div>
-            
                        
         </nav>
     )

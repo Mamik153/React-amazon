@@ -4,7 +4,7 @@ import StarOutlinedIcon from '@material-ui/icons/StarOutlined';
 import { useStateValue } from '../StateProvider';
 
 const Product = ({ id, title, image, price, rating }) => {
-    const [{ basket }, dispatch] = useStateValue();
+    const [{ basket, user }, dispatch] = useStateValue();
 
     const addToBasket = () => {
         //Add item to basket
@@ -46,7 +46,8 @@ const Product = ({ id, title, image, price, rating }) => {
                 src={image}
                 alt=''
             />
-            <button onClick={addToBasket}>Add to Cart</button>
+            {user && <button onClick={addToBasket}>Add to Cart</button>}
+            
         </div>
     )
 }

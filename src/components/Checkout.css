@@ -1,5 +1,5 @@
 .checkout__title{
-    margin-top: 20px;
+    margin-top: 8px;
 }
 .checkout h2{ 
     margin-right: 10px;
@@ -11,7 +11,7 @@
 display: flex;
    padding: 20px;
    background-color: #fff;
-   height: max-content;
+   height: 100vh;
 }
 .checkout__left{
     flex: 1;
