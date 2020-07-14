@@ -1,7 +1,9 @@
 .checkoutProduct{
     display: flex;
-    width: 100%;
-    background-color: #fff;
+    
+    padding:20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     border-top: 1px solid lightgray;
 }
 .checkoutProduct__image{

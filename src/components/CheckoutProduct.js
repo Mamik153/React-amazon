@@ -22,8 +22,11 @@ const CheckoutProduct = ({ id, title, rating, image, price }) => {
                 <p className='checkoutProduct__title'>{title}</p>
                 
                 <p className='checkoutProduct__price'>
-                    <small>Rs</small>
-                    <strong>{price}</strong>
+                    <strong>
+                        {new Intl.NumberFormat('en-IN', {
+                        style: 'currency',
+                        currency: 'INR'}).format(price)}
+                    </strong>
                 </p>
 
                 <div className='checkoutProduct__rating'>
@@ -31,7 +34,7 @@ const CheckoutProduct = ({ id, title, rating, image, price }) => {
                         Array(rating)
                         .fill()
                         .map((_) => (
-                            <p><StarOutlinedIcon style={{color: 'yellow'}} /></p>
+                            <p><StarOutlinedIcon style={{ color: 'yellow' }} /></p>
                         ))
                     }
                 </div>

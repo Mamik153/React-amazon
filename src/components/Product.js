@@ -25,8 +25,11 @@ const Product = ({ id, title, image, price, rating }) => {
             <div className='product__info'>
                 <p>{title}</p>
                 <p className='product__price'>
-                    <small>Rs</small>
-                    <strong> {price}</strong>
+                    <strong> 
+                    {new Intl.NumberFormat('en-IN', {
+                    style: 'currency',
+                    currency: 'INR'}).format(price)}
+                    </strong>
                 </p>
                 <div className='product__rating'>
                     {
